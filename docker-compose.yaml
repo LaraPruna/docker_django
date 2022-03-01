@@ -1,0 +1,32 @@
+version: '3.1'
+services:
+  polls:
+    container_name: polls2
+    image: larapruna/django-python
+    restart: always
+    environment:
+      ALLOWED_HOST: "*"
+      DJANGO_SUPERUSER_USERNAME: lara
+      DJANGO_SUPERUSER_EMAIL: larapruter@gmail.com
+      DJANGO_SUPERUSER_PASSWORD: lara
+      DJANGO_DATABASE_HOST: mariadb2
+      DJANGO_USER: lara
+      DJANGO_PASSWORD: lara
+      DJANGO_DATABASE_NAME: polls
+    ports:
+      - 8084:8000
+    depends_on:
+      - mariadb2
+  mariadb2:
+    container_name: mariadb2
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_DATABASE: polls
+      MARIADB_USER: lara
+      MARIADB_PASSWORD: lara
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - mariadb2_data:/var/lib/mysql
+volumes:
+    mariadb2_data:
