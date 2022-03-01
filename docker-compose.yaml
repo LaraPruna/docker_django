@@ -2,7 +2,7 @@ version: '3.1'
 services:
   polls:
     container_name: polls2
-    image: larapruna/django-python
+    image: larapruna/django_python
     restart: always
     environment:
       ALLOWED_HOST: "*"
