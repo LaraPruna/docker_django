@@ -62,7 +62,7 @@ pipeline {
                 }
 		stage ('Despliegue') {
                     steps{
-			sshagent(credentials : SSH) {
+			sshagent(credentials : ['USER_SSH']) {
                             sh 'scp -o StrictHostKeyChecking=no docker-compose.yaml root@serenity.sysraider.es:'
                             sh 'ssh -o StrictHostKeyChecking=no root@serenity.sysraider.es docker-compose up -d --force-recreate'
 			}
