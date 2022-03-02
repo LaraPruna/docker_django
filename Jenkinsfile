@@ -63,8 +63,8 @@ pipeline {
 		stage ('Despliegue') {
                     steps{
 			sshagent(credentials : SSH) {
-                            sh 'scp docker-compose.yaml root@serenity.sysraider.es:/usr/src/app/'
-                            sh 'ssh root@serenity.sysraider.es bash docker-compose up -d --force-recreate'
+                            sh 'scp -o StrictHostKeyChecking=no docker-compose.yaml root@serenity.sysraider.es:'
+                            sh 'ssh -o StrictHostKeyChecking=no root@serenity.sysraider.es docker-compose up -d --force-recreate'
 			}
                     }
 		}
